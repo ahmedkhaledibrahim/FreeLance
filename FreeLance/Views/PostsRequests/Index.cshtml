@@ -1,0 +1,60 @@
+﻿@model IEnumerable<FreeLance.Models.Post>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h2>Requests</h2>
+
+
+<table class="table table-striped">
+    <tr class="thead-dark">
+        <th>
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Budget)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.User.UserName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Type)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Budget)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Date)
+    </td>
+
+    <td>
+        @Html.ActionLink("Details", "Edit", new { id = item.ID }) |
+        @Html.ActionLink("Refuse", "Delete", new { id = item.ID })
+    </td>
+</tr>
+    }
+
+</table>

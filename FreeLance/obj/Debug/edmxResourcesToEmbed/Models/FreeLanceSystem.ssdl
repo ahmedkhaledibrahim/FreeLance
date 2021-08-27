@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FreeLanceSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientID" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Budget" Type="int" Nullable="false" />
+    <Property Name="Rate" Type="int" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="NumbrOfProposals" Type="int" />
+    <Property Name="Accept" Type="bit" Nullable="false" />
+    <Property Name="Remove" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Proposals">
+    <Key>
+      <PropertyRef Name="PropID" />
+    </Key>
+    <Property Name="PropID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SavedPosts">
+    <Key>
+      <PropertyRef Name="SaveID" />
+    </Key>
+    <Property Name="SaveID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Photo" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Post_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Post" Type="Self.Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="ClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Proposals_Post">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="Proposals" Type="Self.Proposals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Proposals">
+        <PropertyRef Name="PostID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Proposals_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Proposals" Type="Self.Proposals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Proposals">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SavedPosts_Post">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="SavedPosts" Type="Self.SavedPosts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SavedPosts">
+        <PropertyRef Name="PostID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SavedPosts_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="SavedPosts" Type="Self.SavedPosts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SavedPosts">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FreeLanceSystemModelStoreContainer">
+    <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proposals" EntityType="Self.Proposals" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SavedPosts" EntityType="Self.SavedPosts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Post_User" Association="Self.FK_Post_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Post" EntitySet="Post" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Proposals_Post" Association="Self.FK_Proposals_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="Proposals" EntitySet="Proposals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Proposals_User" Association="Self.FK_Proposals_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Proposals" EntitySet="Proposals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SavedPosts_Post" Association="Self.FK_SavedPosts_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="SavedPosts" EntitySet="SavedPosts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SavedPosts_User" Association="Self.FK_SavedPosts_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="SavedPosts" EntitySet="SavedPosts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

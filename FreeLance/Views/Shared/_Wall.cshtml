@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    
+</head>
+<body>
+    <div style="  position: fixed; top: 0; width: 100%; z-index: 100;height: 50px; background-color: #1d232b; " class="navbar navbar-inverse navbar-fixed-top text-white">
+
+        <div style="height:20px">
+            <label style="color:white;margin-right: 1100px; margin-top:15px; font-size:medium;position:fixed; left:250px;">
+                F-Lancing
+            </label>
+        </div>
+        <ul class="nav navbar-nav">
+            <li>
+                <div class="navbar-collapse collapse" style="position:fixed; left:1000px; margin-right:100px; margin-top:-5px;">
+                    @using (Html.BeginForm("search", "FreeLancer", FormMethod.Post))
+
+                    {
+                        {
+
+                            <input type="text" name="Name" id=" Name" />
+                            <input type="submit" value="Search" />
+
+                        }
+                    }
+
+                </div>
+            </li>
+            <li style="margin-left:1500px; margin-top:-20px;">
+                @Html.ActionLink("Logout", "ModalPopUp", "Start", null, new { @class = "btn text-danger my-2 my-sm-0", @style = "color:red;font-size:medium;" })
+            </li>
+        </ul>
+
+
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+
+
+    </div>
+    <hr />
+    <!-- Footer -->
+    
+    <!-- Footer -->
+   
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <footer class=" fixed-bottom font-small bg-dark">
+        <div class="footer-copyright text-center text-light">
+            © 2021 Copyright:
+
+        </div>
+    </footer>
+
+
+</body>
+</html>

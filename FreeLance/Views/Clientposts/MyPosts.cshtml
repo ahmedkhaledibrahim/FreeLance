@@ -1,0 +1,37 @@
+﻿@model IEnumerable<FreeLance.Models.Post>
+@*@model WebApplication2.Models.ListOfPosts*@
+
+@{
+    ViewBag.Title = "MyPosts";
+    Layout = "~/Views/Shared/_FactoryLayout.cshtml";
+    @Styles.Render("~/Content/css")
+}
+
+<h2>My Posts</h2>
+<hr />
+@if (ViewBag.myposts != null) { 
+foreach (var item in ViewBag.myposts)
+   {
+    <div style="height:200px;margin-left:100px;">
+        <div class="card" style="width: 500px; font-size:medium">
+            <div class="card-body">
+                <h5 class="card-title">@item.Date</h5>
+                <p class="card-text">@item.Description</p>
+                <h6 class="card-subtitle mb-2 text-muted">Budget: @item.Budget</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Budget: @item.Type</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Rate: @item.Rate</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Numer Of Proposals: @item.NumbrOfProposals</h6>
+                @Html.ActionLink("Edit", "EditPost", "Clientposts", new { Postid = item.ID }, null)
+                @Html.ActionLink("Remove", "DeletePost", "Clientposts", new { Postid = item.ID }, null)
+                @Html.ActionLink("Proposals", "Recieved_Proposals", "Clientposts", new { id = item.ID }, null)
+            </div>
+        </div>
+    </div>
+   }
+}
+else { 
+    <div style="margin-left:400px;margin-top:200px; width:300px;">
+        <h2>THERE IS NO POSTS</h2>
+    </div>
+     
+}

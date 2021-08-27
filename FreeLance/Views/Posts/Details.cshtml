@@ -1,0 +1,93 @@
+﻿@model FreeLance.Models.Post
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div style="margin-left:60px;">
+    <div>
+        <h4>Post</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Type)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Budget)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Budget)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Rate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Rate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NumbrOfProposals)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NumbrOfProposals)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Accept)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Accept)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Remove)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Remove)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.User.UserName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.User.UserName)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

@@ -1,0 +1,23 @@
+﻿@using FreeLance.Models
+@model Post
+@{
+    ViewBag.Title = "DeletePost";
+    Layout = "~/Views/Shared/_FactoryLayout.cshtml";
+    @Styles.Render("~/Content/css")
+}
+
+<h2>Are You Sure to Approve FreeLancer ?</h2>
+@using (Html.BeginForm("ApprovePropFreeLancer", "Clientposts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-group" style="height:50px;">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+
+}
+

@@ -1,0 +1,34 @@
+﻿@model FreeLance.Models.listofproposals
+
+@{
+    ViewBag.Title = "Recieved_Proposals";
+    Layout = "~/Views/Shared/_FactoryLayout.cshtml";
+    @Styles.Render("~/Content/css")
+}
+
+<h2>Recieved_Proposals</h2>
+
+<div>
+    <h4>Proposal</h4>
+    <hr />
+    @foreach (var item in Model.Result)
+    {
+<div class="card" style="width: 800px; height:280px; border: 1px solid gray; border-radius: 10px;">
+    <div class="card-body" style="padding:10px;">
+        <img src="@Url.Content(item.Photo)" width="100" , height="60" />
+        <h5 class="card-title">User Name: @item.UserName</h5>
+        <p class="card-text">First Name: @item.FirstName</p>
+        <p class="card-text">Last Name: @item.LastName</p>
+        <p class="card-text">Phone: @item.Phone</p>
+        <p class="card-text">Email: @item.Email</p>
+        <p class="card-text">Role: @item.Role</p>
+        @Html.ActionLink("Approve", "ApproveProp", "Clientposts", new { postid = Model.PostID }, null)
+    </div>
+   
+</div>
+        <br />
+    }
+</div>
+<p>
+
+</p>

@@ -1,0 +1,37 @@
+﻿@model FreeLance.Models.Post
+<html>
+<head>
+    <title>Post</title>
+</head>
+<body>
+
+
+
+    @{
+
+        Layout = "~/Views/Shared/_Wall.cshtml";
+        @Styles.Render("~/Content/css")
+
+    }
+
+
+    <h2>show</h2>
+    <div>
+        @foreach (var item in ViewBag.discription)
+        {
+            <div class="card" style="width: 800px; height:160px; border: 1px solid gray; border-radius: 10px;">
+                <div class="card-body" style="padding:10px;">
+                    <h5 class="card-title">@item.Date</h5>
+                    <p class="card-text">Description:@item.Description</p>
+                    <h6 class="card-subtitle mb-2 text-muted">Budget: @item.Budget</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Job Type: @item.Type</h6>
+                    @Html.ActionLink("proposal", "proposal", "FreeLancer", new { id = item.ID }, null)
+
+                </div>
+            </div>
+            <br />
+        }
+    </div>
+
+</body>
+</html>
